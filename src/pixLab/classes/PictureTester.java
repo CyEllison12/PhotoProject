@@ -18,6 +18,46 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testZeroRed()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.zeroRed();
+    beach.explore();
+  }
+  
+  public static void testZeroGreen()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.zeroGreen();
+    beach.explore();
+  }
+  
+  public static void testAllRed()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.allRed();
+    beach.explore();
+  }
+  
+  public static void testAllGreen()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.allGreen();
+    beach.explore();
+  }
+  public static void testAllBlue()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.allBlue();
+    beach.explore();
+  }
+  
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -60,6 +100,11 @@ public class PictureTester
     // and comment out the ones you don't want
     // to run
     testZeroBlue();
+    testZeroRed();
+    testZeroGreen();
+    testAllRed();
+    testAllGreen();
+    testAllBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
