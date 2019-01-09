@@ -165,6 +165,22 @@ public class Picture extends SimplePicture
 	    }
   }
   
+  public void halfAllButBlue()
+  {
+	    Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	    	int red = pixelObj.getRed();
+	    	int green = pixelObj.getGreen();
+	        pixelObj.setRed(red/2);
+	        pixelObj.setGreen(green/2);
+	        
+	      }
+	    }
+  }
+  
   
   
   /** Method that mirrors the picture around a 
@@ -176,6 +192,7 @@ public class Picture extends SimplePicture
     Pixel leftPixel = null;
     Pixel rightPixel = null;
     int width = pixels[0].length;
+    
     for (int row = 0; row < pixels.length; row++)
     {
       for (int col = 0; col < width / 2; col++)
@@ -185,6 +202,24 @@ public class Picture extends SimplePicture
         rightPixel.setColor(leftPixel.getColor());
       }
     } 
+  }
+  
+  public void mirrorHorozontal()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel topPixel = null;
+	  Pixel bottomPixel = null;
+	  int height = pixels.length;
+	  
+	  for(int cols = 0; cols < pixels[0].length; cols++)
+	  {
+		  for(int rows = 0; rows < height / 2; rows++)
+		  {
+			  topPixel = pixels[rows][cols];
+			  bottomPixel = pixels[height - 1 - rows][cols];
+			  bottomPixel.setColor(topPixel.getColor());
+		  }
+	  }
   }
  
   
@@ -211,6 +246,42 @@ public class Picture extends SimplePicture
       }
     }
   }
+  
+  public void mirrorGull()
+  {
+	  int mirrorPoint = 400;
+	  Pixel leftPixel = null;
+	  Pixel rightPixel = null;
+	  Pixel topPixel = null;
+	  Pixel bottomPixel = null;
+	  int count = 0;
+	  Pixel[][] pixels = this.getPixels2D();
+	  int height = pixels.length;
+	  
+	  
+	  for (int row = 230; row < 327; row++)
+	    {
+	      // loop from 13 to just before the mirror point
+	      for (int col = 231; col < mirrorPoint; col++)
+	      {
+	        
+	        leftPixel = pixels[row][col];      
+	        rightPixel = pixels[row][(mirrorPoint - col + mirrorPoint)];
+	        rightPixel.setColor(leftPixel.getColor());
+	      }
+	    }
+	  for(int cols = 0; cols < pixels[0].length; cols++)
+	  {
+		  for(int rows = 0; rows < height / 2; rows++)
+		  {
+			  topPixel = pixels[rows][cols];
+			  bottomPixel = pixels[height - 1 - rows][cols];
+			  bottomPixel.setColor(topPixel.getColor());
+		  }
+	  }
+  }
+
+ 
   
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
@@ -246,17 +317,27 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("barbaraS.jpg");
+    Picture flower2 = new Picture("robot.jpg");
+    Picture hand = new Picture("hand.jpg");
     this.copy(flower1,0,0);
+    this.copy(flower1,150,0);
     this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
     Picture flowerNoBlue = new Picture(flower2);
-    flowerNoBlue.zeroBlue();
-    this.copy(flowerNoBlue,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower2,500,0);
+    Picture flowerNoBlue2 = new Picture(flower1);
+    flowerNoBlue.halfAllButBlue();
+    flowerNoBlue2.halfAllButBlue();
+    this.copy(flowerNoBlue,0,120);
+    this.copy(flowerNoBlue,0,161);
+    this.copy(flowerNoBlue,0,202);
+    this.copy(flowerNoBlue,0,243);
+    this.copy(flowerNoBlue,0,284);
+    this.copy(flowerNoBlue2,72,111);
+    this.copy(flowerNoBlue2,72,222);
+    this.copy(hand,0,0);
+    
     this.mirrorVertical();
+    this.mirrorHorozontal();
     this.write("collage.jpg");
   }
   
@@ -286,6 +367,89 @@ public class Picture extends SimplePicture
       }
     }
   }
+  
+  
+  public void mirrorRandom()
+  {
+	  Pixel leftPixel = null;
+	  Pixel rightPixel = null;
+//	  Pixel topPixel = null;
+//	  Pixel bottomPixel = null;
+	  Pixel[][] pixels = this.getPixels2D();
+	  int height = pixels.length;
+	  int width = pixels[0].length; 
+	  int widthMirrorPoint = (int) ((width - 1) * Math.random());
+	  int heightMirrorPoint = (int) ((height - 1) * Math.random());
+	  
+	  for (int row = heightMirrorPoint; row < pixels.length; row++)
+	  {
+		  for (int col = widthMirrorPoint; col < pixels[0].length; col++)
+		  {
+			  leftPixel = pixels[row][col];
+			  rightPixel = pixels[row][(widthMirrorPoint - col + widthMirrorPoint)]; 
+			  rightPixel.setColor(leftPixel.getColor());
+		  }
+	  }
+
+  }
+  
+  public void randomPixelsColor()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int height = pixels.length;
+	  int width = pixels[0].length; 
+		int red = (int) (Math.random() * 256);
+		int green = (int) (Math.random() * 256);
+		int blue = (int) (Math.random() * 256);
+		int pix = (int) (Math.random() * width);
+		
+		for(int row = 0; row < height; row++)
+		{
+			
+		}
+  }
+  
+  //Picture Glitch
+  
+  public void glitchy()
+  {
+	  int num = (int) (7 * Math.random());
+	  
+	  if(num == 0)
+	  {
+		  this.allBlue();
+	  }
+	  if(num == 1)
+	  {
+		  this.allGreen();
+	  }
+	  if(num == 2)
+	  {
+		  this.allRed();
+	  }
+	  if(num == 3)
+	  {
+		  this.zeroBlue();
+	  }
+	  if(num == 4)
+	  {
+		  this.zeroGreen();
+	  }
+	  if(num == 5)
+	  {
+		  this.zeroRed();
+	  }
+	  if(num == 6)
+	  {
+		  this.halfAllButBlue();
+	  }
+	  
+	  this.mirrorRandom();
+
+	  	  
+}
+  
+  
   
   
   /* Main method for testing - each class in Java can have a main 
