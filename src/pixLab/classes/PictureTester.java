@@ -116,7 +116,7 @@ public class PictureTester
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
-    Picture swan = new Picture("hand.jpg");
+    Picture swan = new Picture("sans.jpg");
     swan.edgeDetection(10);
     swan.explore();
   }
@@ -131,12 +131,103 @@ public class PictureTester
   
   public static void testChromakey()
   {
-	  Picture source = new Picture("tigerNew.jpg");
+	  Picture source = new Picture("earthClose.jpg");
 	  Picture background = new Picture("galaxy4.jpg");
+	  
 	  source.explore();
 	  background.explore();
 	  source.chromakey(background, Color.black);
 	  source.explore();
+  }
+  
+  public static void testShiftLeftRight()
+  {
+	  Picture shift = new Picture("kitten2.jpg");
+	  
+	  int amount = (int) (Math.random() * (shift.getWidth()));
+	  shift.shiftLeftRight(amount);
+	  shift.explore();
+	  
+  }
+  
+  public static void testMegaGlitch()
+  {
+	  Picture source = new Picture("sans.jpg");
+	  Picture background = new Picture("galaxy.jpg");
+	  
+	  
+	
+	  source.explore();
+	  source.chromakey(background, Color.black);
+	  source.explore();
+	  
+	  int num = (int) (7 * Math.random());
+
+	  
+	  if(num == 0)
+	  {
+		  source.allBlue();
+	  }
+	  if(num == 1)
+	  {
+		  source.allGreen();
+	  }
+	  if(num == 2)
+	  {
+		  source.allRed();
+	  }
+	  if(num == 3)
+	  {
+		  source.zeroBlue();
+	  }
+	  if(num == 4)
+	  {
+		  source.zeroGreen();
+	  }
+	  if(num == 5)
+	  {
+		  source.zeroRed();
+	  }
+	  if(num == 6)
+	  {
+		  source.halfAllButBlue();
+	  }
+	  
+	  source.explore();
+	  
+	  int amount = (int) (Math.random() * 300);
+	  source.shiftLeftRight(amount);
+	  source.explore();
+	  
+	  int mirr = (int) (Math.random() *4);
+	  
+	  if(mirr == 0)
+	  {
+		  
+	  }
+	  else if(mirr == 1)
+	  {
+		  source.mirrorVertical();
+	  }
+	  else if(mirr == 2)
+	  {
+		  source.mirrorHorozontal();
+	  }
+	  else if(mirr == 3)
+	  {
+		  source.mirrorVertical();
+		  source.mirrorHorozontal();
+	  }
+	  
+	  source.explore();
+	  
+	  source.randomPixelColors();
+	  
+	  source.explore();
+	  
+	  
+	  
+	  
   }
   
   /** Main method for testing.  Every class can have a main
@@ -176,6 +267,8 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
  //   testGlitchy();
-	  testChromakey();
+//	  testChromakey();
+//	  testShiftLeftRight();
+	  testMegaGlitch();
   }
 }

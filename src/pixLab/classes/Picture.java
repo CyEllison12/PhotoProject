@@ -424,7 +424,7 @@ public class Picture extends SimplePicture
   public void glitchy()
   {
 	  int num = (int) (7 * Math.random());
-	  int loop = (int) (9 * Math.random());
+	  int loop = (int) (20 * Math.random());
 	  
 	  if(num == 0)
 	  {
@@ -456,7 +456,6 @@ public class Picture extends SimplePicture
 	  }
 	  
 	  //this.mirrorRandom();
-	  
 	  for (int a = 0; a < loop; a++)
 	  {
 	  this.randomPixelsColor();
@@ -464,6 +463,15 @@ public class Picture extends SimplePicture
 
 	  	  
 }
+  
+  public void randomPixelColors()
+  {
+	  int loop = (int) (20 * Math.random());
+	  for (int a = 0; a < loop; a++)
+	  {
+	  this.randomPixelsColor();
+	  }
+  }
   
   public void chromakey(Picture replacement, Color changeColor)
   {
@@ -474,13 +482,44 @@ public class Picture extends SimplePicture
 	  {
 		  for (int col = 0; col < mainPixels[0].length; col++)
 		  {
-			  if(mainPixels[row][col].colorDistance(changeColor) < 100)
+			  if(mainPixels[row][col].colorDistance(changeColor) < 20)
 			  {
 				  mainPixels[row][col].setColor(replacementPixels[row][col].getColor());
 			  }
 		  }
 	  }
   }
+  
+  public void shiftLeftRight(int amount)
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Picture temp = new Picture(this);
+	  Pixel [][] copied = temp.getPixels2D();
+	  
+	  
+	  int shiftValue = amount;
+	  int width = pixels[0].length;
+	  
+	  for(int row = 0; row < pixels.length; row++)
+	  {
+		  for (int col = 0; col < pixels[0].length; col++)
+		  {
+			  shiftValue = (col + amount) % width;
+			  copied[row][col].setColor(pixels[row][shiftValue].getColor());
+		  }
+	  }
+	  
+	  for (int row = 0; row < pixels.length; row++)
+	  {
+		  for (int col = 0; col < pixels[0].length; col++)
+		  {
+			  pixels[row][col].setColor(copied[row][col].getColor());
+		  }
+	  }
+			  
+  }
+  
+  
   
   
   
