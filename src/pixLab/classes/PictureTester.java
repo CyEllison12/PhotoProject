@@ -153,13 +153,44 @@ public class PictureTester
   public static void testMegaGlitch()
   {
 	  Picture source = new Picture("sans.jpg");
-	  Picture background = new Picture("galaxy.jpg");
+	  Picture background = new Picture("sans.jpg");
 	  
-	  
-	
 	  source.explore();
+	  int amount = (int) (Math.random() * 300);
+	  source.shiftLeftRight(amount);
+	  source.explore();
+	 
+	  int mirr = (int) (Math.random() *5);
+	  
+	  if(mirr == 0)
+	  {
+		  
+	  }
+	  else if(mirr == 1)
+	  {
+		  source.mirrorVertical();
+	  }
+	  else if(mirr == 2)
+	  {
+		  source.mirrorHorozontal();
+	  }
+	  else if(mirr == 3)
+	  {
+		  source.mirrorVertical();
+		  source.mirrorHorozontal();
+	  }
+	  else if(mirr == 4)
+	  {
+		  source.mirrorHorozontal();
+		  source.mirrorVertical();
+	  }
+	  
+	  source.explore();
+	  
+
 	  source.chromakey(background, Color.black);
 	  source.explore();
+	  
 	  
 	  int num = (int) (7 * Math.random());
 
@@ -195,32 +226,6 @@ public class PictureTester
 	  
 	  source.explore();
 	  
-	  int amount = (int) (Math.random() * 300);
-	  source.shiftLeftRight(amount);
-	  source.explore();
-	  
-	  int mirr = (int) (Math.random() *4);
-	  
-	  if(mirr == 0)
-	  {
-		  
-	  }
-	  else if(mirr == 1)
-	  {
-		  source.mirrorVertical();
-	  }
-	  else if(mirr == 2)
-	  {
-		  source.mirrorHorozontal();
-	  }
-	  else if(mirr == 3)
-	  {
-		  source.mirrorVertical();
-		  source.mirrorHorozontal();
-	  }
-	  
-	  source.explore();
-	  
 	  source.randomPixelColors();
 	  
 	  source.explore();
@@ -228,6 +233,19 @@ public class PictureTester
 	  
 	  
 	  
+  }
+  
+  public static void testSteganography()
+  {
+	  Picture source = new Picture(".jpg");
+	  
+	  Picture message = new Picture("trollface.jpg");
+	  source.explore();
+	  message.explore();
+	  source.hidePicture(message);
+	  source.explore();
+	  source.revealPicture();
+	  source.explore();
   }
   
   /** Main method for testing.  Every class can have a main
@@ -269,6 +287,7 @@ public class PictureTester
  //   testGlitchy();
 //	  testChromakey();
 //	  testShiftLeftRight();
-	  testMegaGlitch();
+//	  testMegaGlitch();
+	  testSteganography();
   }
 }
