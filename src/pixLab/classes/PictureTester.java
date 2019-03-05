@@ -152,47 +152,25 @@ public class PictureTester
   
   public static void testMegaGlitch()
   {
-	  Picture source = new Picture("sans.jpg");
-	  Picture background = new Picture("sans.jpg");
+	  Picture source = new Picture("trollface.jpg");
+	  Picture background = new Picture("trollface.jpg");
 	  
 	  source.explore();
-	  int amount = (int) (Math.random() * 300);
-	  source.shiftLeftRight(amount);
-	  source.explore();
-	 
-	  int mirr = (int) (Math.random() *5);
+	  source.shift();
 	  
-	  if(mirr == 0)
-	  {
-		  
-	  }
-	  else if(mirr == 1)
-	  {
-		  source.mirrorVertical();
-	  }
-	  else if(mirr == 2)
-	  {
-		  source.mirrorHorozontal();
-	  }
-	  else if(mirr == 3)
-	  {
-		  source.mirrorVertical();
-		  source.mirrorHorozontal();
-	  }
-	  else if(mirr == 4)
-	  {
-		  source.mirrorHorozontal();
-		  source.mirrorVertical();
-	  }
-	  
-	  source.explore();
-	  
-
 	  source.chromakey(background, Color.black);
 	  source.explore();
 	  
+	  int loop = (int) (Math.random() * 10);
+	  for(int a = 0; a < loop; a++)
+	  {
+		  source.shift();
+		  source.chromakey(background, Color.black);
+		  source.shift();
+		  source.explore();
+	  }
 	  
-	  int num = (int) (7 * Math.random());
+int num = (int) (7 * Math.random());
 
 	  
 	  if(num == 0)
@@ -223,11 +201,8 @@ public class PictureTester
 	  {
 		  source.halfAllButBlue();
 	  }
-	  
-	  source.explore();
-	  
+	
 	  source.randomPixelColors();
-	  
 	  source.explore();
 	  
 	  
@@ -287,7 +262,7 @@ public class PictureTester
  //   testGlitchy();
 //	  testChromakey();
 //	  testShiftLeftRight();
-//	  testMegaGlitch();
-	  testSteganography();
+	  testMegaGlitch();
+//	  testSteganography();
   }
 }

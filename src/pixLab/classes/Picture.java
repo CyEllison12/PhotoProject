@@ -563,6 +563,104 @@ public class Picture extends SimplePicture
 	  }
   }
   
+  public void shift()
+  {
+	  int amount = (int) (Math.random() * 300);
+	  this.shiftLeftRight(amount);
+
+	 
+	  int mirr = (int) (Math.random() *5);
+	  
+	  if(mirr == 0)
+	  {
+		  
+	  }
+	  else if(mirr == 1)
+	  {
+		  this.mirrorVertical();
+	  }
+	  else if(mirr == 2)
+	  {
+		  this.mirrorHorozontal();
+	  }
+	  else if(mirr == 3)
+	  {
+		  this.mirrorVertical();
+		  this.mirrorHorozontal();
+	  }
+	  else if(mirr == 4)
+	  {
+		  this.mirrorHorozontal();
+		  this.mirrorVertical();
+	  }
+	  
+
+	  
+//	  int num = (int) (7 * Math.random());
+//
+//	  
+//	  if(num == 0)
+//	  {
+//		  this.allBlue();
+//	  }
+//	  if(num == 1)
+//	  {
+//		  this.allGreen();
+//	  }
+//	  if(num == 2)
+//	  {
+//		  this.allRed();
+//	  }
+//	  if(num == 3)
+//	  {
+//		  this.zeroBlue();
+//	  }
+//	  if(num == 4)
+//	  {
+//		  this.zeroGreen();
+//	  }
+//	  if(num == 5)
+//	  {
+//		  this.zeroRed();
+//	  }
+//	  if(num == 6)
+//	  {
+//		  this.halfAllButBlue();
+//	  }
+	  
+//	  int num = (int) (7 * Math.random());
+//
+//	  
+//	  if(num == 0)
+//	  {
+//		  this.allBlue();
+//	  }
+//	  if(num == 1)
+//	  {
+//		  this.allGreen();
+//	  }
+//	  if(num == 2)
+//	  {
+//		  this.allRed();
+//	  }
+//	  if(num == 3)
+//	  {
+//		  this.zeroBlue();
+//	  }
+//	  if(num == 4)
+//	  {
+//		  this.zeroGreen();
+//	  }
+//	  if(num == 5)
+//	  {
+//		  this.zeroRed();
+//	  }
+//	  if(num == 6)
+//	  {
+//		  this.halfAllButBlue();
+//	  }
+  }
+  
   
   
   
